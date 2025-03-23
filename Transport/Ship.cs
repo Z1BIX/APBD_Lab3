@@ -36,7 +36,7 @@ public class Ship
             throw new InvalidOperationException("Cannot load container more than " + maxNumberOfContainers + " containers");
         }
 
-        if (totalWeight + container.mass > maxWeight)
+        if (totalWeight + container.mass > maxWeight * 1000)
         {
            throw new InvalidOperationException("Maximal wight cannot exceed" + maxWeight); 
         }
