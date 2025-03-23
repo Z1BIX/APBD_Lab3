@@ -1,3 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Lab3;
 
-Console.WriteLine("Hello, World!");
+Container liquidContainer = new LiquidContainer(12.2d, 7, 5, 7.2, 6.5, 15, false);
+
+Console.WriteLine(liquidContainer);

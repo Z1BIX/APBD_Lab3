@@ -42,7 +42,7 @@ public class LiquidContainer : Container, IHazardNotifier
     {
         String firstPart = "KON";
         String secondPart = "L";
-        return firstPart + secondPart + Container.id;
+        return $"{firstPart}-{secondPart}-{containerID}";
     }
     
     public void notify()

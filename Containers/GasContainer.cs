@@ -20,7 +20,7 @@ public class GasContainer : Container, IHazardNotifier
     {
         String firstPart = "KON";
         String secondPart = "G";
-        return firstPart + secondPart + Container.id;
+        return $"{firstPart}-{secondPart}-{containerID}";
     }
 
     public void notify()

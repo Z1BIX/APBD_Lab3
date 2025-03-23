@@ -2,6 +2,7 @@
 
 public abstract class Container
 {
+    public int containerID;
     public double mass { get; set; }
     public double height { get; set; }
     public double tareWeight { get; set; }
@@ -9,21 +10,18 @@ public abstract class Container
     public double depth { get; set; }
     public String serialNumber { get; set; }
     public double maxPayload { get; set; }
-    
-    public static int id
-    {
-        get { return ++id; }
-        set { id = value; }
-    }
+
+    private static int id;
 
     public Container(double mass, double height, double tareWeight, double cargoWeight, double depth, double maxPayload)
     {
+        containerID = ++id;
         this.mass = mass;
         this.height = height;
         this.tareWeight = tareWeight;
         this.cargoWeight = cargoWeight;
         this.depth = depth;
-        this.serialNumber = generateSerialNumber();
+        serialNumber = generateSerialNumber();
         this.maxPayload = maxPayload;
     }
     
@@ -43,6 +41,11 @@ public abstract class Container
             this.mass += mass;
         }
     }
-    
+
+    public override string ToString()
+    {
+        return $"Container: {this.serialNumber}; Max Payload: {this.maxPayload}; Cargo Weight: {this.cargoWeight};";
+    }
+
     public abstract String generateSerialNumber();
 }
