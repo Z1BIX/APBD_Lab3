@@ -9,6 +9,12 @@ public abstract class Container
     public double depth { get; set; }
     public String serialNumber { get; set; }
     public double maxPayload { get; set; }
+    
+    public static int id
+    {
+        get { return ++id; }
+        set { id = value; }
+    }
 
     public Container(double mass, double height, double tareWeight, double cargoWeight, double depth, double maxPayload)
     {

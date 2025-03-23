@@ -2,21 +2,64 @@
 
 public class RefrigeratedContainer : Container
 {
-    private String[] types {get; set;}
+    private static Dictionary<string, double> types = new Dictionary<string, double>
+    {
+        ["Bananas"] = 13.3,
+        ["Chocolate"] = 18,
+        ["Fish"] = 2,
+        ["Meat"] = -15,
+        ["Ice Cream"] = -18,
+        ["Frozen Pizza"] = -30,
+        ["Cheese"] = 7.2,
+        ["Sausages"] = 5,
+        ["Butter"] = 20.5,
+        ["Eggs"] = 19,
+    };
+    
+    private String type {get; set;}
     public double temperature { get; set; }
     
-    
-    public RefrigeratedContainer(double mass, double height, double tareWeight, double cargoWeight, double depth, double maxPayload) : base(mass, height, tareWeight, cargoWeight, depth, maxPayload)
+    public RefrigeratedContainer(double mass, double height, double tareWeight, double cargoWeight, double depth, double maxPayload, String type, double temperature) : base(mass, height, tareWeight, cargoWeight, depth, maxPayload)
     {
+        checkArguments(type, temperature);
+        this.type = type;
+        this.temperature = temperature;
+    }
+
+    private void checkArguments(String type, double temperature)
+    {
+        if (!types.ContainsKey(type))
+        {
+            throw new InvalidOperationException("Type not found");
+        }
+        else
+        {
+            this.type = type;
+        }
+
+        double requiredTempreture = types.GetValueOrDefault(type, -1);
+
+        if (requiredTempreture > 0 )
+        {
+            if (temperature < requiredTempreture)
+            {
+                throw new InvalidOperationException("Too low temperature");
+            }
+        }
+        else
+        {
+            if (temperature > requiredTempreture)
+            {
+                throw new InvalidOperationException("Too high temperature");
+            }
+        }
     }
 
     public override string generateSerialNumber()
     {
         String firstPart = "KON";
         String secondPart = "G";
-        Random rnd = new Random();
-        int thirdPart  = rnd.Next(0, 101);
-        return firstPart + secondPart + thirdPart;
+        return firstPart + secondPart + Container.id;
     }
     
     public void notify()

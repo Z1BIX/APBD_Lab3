@@ -20,9 +20,7 @@ public class GasContainer : Container, IHazardNotifier
     {
         String firstPart = "KON";
         String secondPart = "G";
-        Random rnd = new Random();
-        int thirdPart  = rnd.Next(0, 101);
-        return firstPart + secondPart + thirdPart;
+        return firstPart + secondPart + Container.id;
     }
 
     public void notify()

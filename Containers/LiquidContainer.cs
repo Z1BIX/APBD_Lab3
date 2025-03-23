@@ -42,9 +42,7 @@ public class LiquidContainer : Container, IHazardNotifier
     {
         String firstPart = "KON";
         String secondPart = "L";
-        Random rnd = new Random();
-        int thirdPart  = rnd.Next(0, 101);
-        return firstPart + secondPart + thirdPart;
+        return firstPart + secondPart + Container.id;
     }
     
     public void notify()
